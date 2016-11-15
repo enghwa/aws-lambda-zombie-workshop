@@ -53,7 +53,8 @@
       "ap-southeast-1": {
         "S3Endpoint": "https://s3-ap-southeast-1",
         "S3ContentsBucket": "aws-zombie-workshop-ap-southeast-1",
-        "CognitoRegion": "us-east-1"
+        "S3ContentsBucketLambdaCognitoTrigger": "aws-zombie-workshop-ap-northeast-2",
+        "CognitoRegion": "ap-northeast-2"
       },
       "ap-southeast-2": {
         "S3Endpoint": "https://s3-ap-southeast-2",
@@ -407,7 +408,7 @@
         "ServiceToken": { "Fn::GetAtt": ["CognitoTriggerBuild", "Arn"] },
         "region": { "Ref": "AWS::Region" },
         "CognitoRegion": { "Fn::FindInMap" : [ "AllowedRegions", { "Ref" : "AWS::Region" }, "CognitoRegion"]},
-        "LambdaFunctionBucket": { "Fn::FindInMap" : [ "AllowedRegions", { "Ref" : "AWS::Region" }, "S3ContentsBucket"]},
+        "LambdaFunctionBucket": { "Fn::FindInMap" : [ "AllowedRegions", { "Ref" : "AWS::Region" }, "S3ContentsBucketLambdaCognitoTrigger"]},
         "StackName": { "Ref": "AWS::StackName" },
         "IamRole": { "Fn::GetAtt": ["ZombieLabLambdaRole", "Arn"] }
       },
