@@ -408,7 +408,7 @@
         "ServiceToken": { "Fn::GetAtt": ["CognitoTriggerBuild", "Arn"] },
         "region": { "Ref": "AWS::Region" },
         "CognitoRegion": { "Fn::FindInMap" : [ "AllowedRegions", { "Ref" : "AWS::Region" }, "CognitoRegion"]},
-        "LambdaFunctionBucket": { "Fn::FindInMap" : [ "AllowedRegions", { "Ref" : "AWS::Region" }, "S3ContentsBucket"]},
+        "LambdaFunctionBucket": { "Fn::FindInMap" : [ "AllowedRegions", { "Ref" : "AWS::Region" }, "S3ContentsBucketLambdaCognitoTrigger"]},
         "StackName": { "Ref": "AWS::StackName" },
         "IamRole": { "Fn::GetAtt": ["ZombieLabLambdaRole", "Arn"] }
       },
