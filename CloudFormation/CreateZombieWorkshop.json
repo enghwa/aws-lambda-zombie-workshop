@@ -52,7 +52,7 @@
       },
       "ap-southeast-1": {
         "S3Endpoint": "https://s3-ap-southeast-1",
-        "S3ContentsBucket": "aws-zombie-workshop-ap-southeast-1",
+        "S3ContentsBucket": "aws-zombie-workshop-ap-southeast-1-enghwa",
         "S3ContentsBucketLambdaCognitoTrigger": "aws-zombie-workshop-ap-northeast-2",
         "CognitoRegion": "ap-northeast-2"
       },
