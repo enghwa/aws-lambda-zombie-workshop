@@ -48,7 +48,7 @@ Region | Launch Template
 ------------ | -------------
 **Singapore** (ap-southeast-1) | [![Launch Zombie Workshop Stack into Singapore with CloudFormation](/Images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=zombiestack&templateURL=https://s3-ap-southeast-1.amazonaws.com/eht-webapp/CreateZombieWorkshop.json)
 
-*If you have CloudFormation launch FAILED issues, please try launching in us-east-1 (Virginia)*
+*If you have CloudFormation launch FAILED issues, please try launching in us-east-1 (Virginia) from https://github.com/awslabs/aws-lambda-zombie-workshop* 
 
 2\. Once you have chosen a region and are inside the AWS CloudFormation Console, you should be on a screen titled "Select Template". We are providing CloudFormation with a template on your behalf, so click the blue **Next** button to proceed.
 
@@ -72,7 +72,7 @@ The survivor chat uses [Amazon Cognito](https://aws.amazon.com/cognito/) for aut
 
 In addition to federating 3rd party providers such as Facebook, Google, and other providers, Cognito also offers a new built-in Identity Provider called [Cognito User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html).
 
-A Cognito Federated Identity pool has already been created for you when you launched CloudFormation.
+A Cognito Federated Identity pool (in Seoul Region)has already been created for you when you launched CloudFormation.
 
 You will now setup the Cognito User Pool as the user directory of your chat app survivors and configure it as a valid Authentication Provider with the Cognito Federated Identity Pool. API Gateway has been configured with IAM Authorization to only allow requests that are signed with valid AWS permissions. When a user signs into the Survivor Chat App (User Pool) successfully, a web call is made to the Cognito Federated Identity Pool to assume temporary AWS credentials for your authenticated user. These credentials are used to make signed [AWS SigV4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) HTTPS requests to your message API.
 
@@ -84,7 +84,8 @@ You will now setup the Cognito User Pool as the user directory of your chat app 
 
 ![Navigate to the Cognito service](/Images/Cognito-Step1.png)
 
-Cognito User Pools is not available in all AWS regions. Please review the list [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#cognito_identity_region) for the regions that Cognito is available in. Therefore if you launched your CloudFormation stack in any region other than one of those listed on the above website, then please use the top navigation bar in the management console to switch AWS regions and navigate to **us-east-1 (Virginia)** to configure Cognito. Your application will stay hosted in the region you launched the CloudFormation template, but the authentication with Cognito will reside in us-east-1 (Virginia). If you launched the Cloudformation stack in one of those regions where Cognito exists, then please simply navigate to the Cognito service in the AWS Management Console as the service is available in that region already and you will configure it within that region.
+Cognito User Pools is not available in all AWS regions. Please review the list [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#cognito_identity_region) for the regions that Cognito is available in. We are using Seoul Region for cognito while all other services will be in Singapore Region, please use the top navigation bar in the management console to switch AWS regions and navigate to **ap-northeast-2 (Seoul)** to configure Cognito. Your application will stay hosted in the region you launched the CloudFormation template (Singapore Region), but the authentication with Cognito will reside in ap-northeast-2 (Seoul).
+
 
 When inside the Cognito service console, click the blue button **Manage your User Pools**. You will setup the user directory that your chat application users will authenticate to when they use your app.
 
@@ -241,7 +242,7 @@ The application uses [CORS](http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.
 
 * Currently, this API method is configured to a "MOCK" integration. MOCK integrations are dummy backends that are useful when you are testing and don't yet have the backend built out but need the API to return sample dummy data. You will remove the MOCK integration and configure this GET method to connect to a Lambda function that queries DynamoDB.
 
-6\. For the **Lambda Region** field, select the region in which you launched the CloudFormation stack. (HINT: Select the region code that corresponds with the yellow CloudFormation button you clicked to launch the CloudFormation template). For example if you launched your stack in Virginia (us-east-1), then you will select us-east-1 as your Lambda Region.
+6\. For the **Lambda Region** field, select the region in which you launched the CloudFormation stack. (HINT: Select the region code that corresponds with the yellow CloudFormation button you clicked to launch the CloudFormation template). 
 
 * When you launched the CloudFormation template, it also created several Lambda functions for you locally in the region you selected, including functions for retrieving data from and putting data into a DynamoDB "Talkers" table with details about which survivors are currently typing in the chat room.
 
