@@ -296,6 +296,8 @@ The application uses [CORS](http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.
 
 * In this workshop we deploy the API to a stage called "ZombieWorkshopStage". In your real world scenario, you'll likely create stages such as "production" or "development" which align to the actual stages of your API development process.
 
+* if CORS is not working, do a hard reload on your browswer, and remove all cache. (eg: Chrome Debug -> Application -> Clear Storage)
+
 **LAB 1 COMPLETE**
 
 Head back to the survivor chat app and as you type, POST requests are being made to the Talkers API resource which is updating a DynamoDB table continuously with timestamps along with who is typing. Continuous polling (GET Requests) on that table (via API Gateway GET Requests to the /talkers resource) also occurs to determine which survivors are typing, which updates the "Users Typing" field in the web app.
@@ -599,12 +601,6 @@ Using the things learned in this workshop, can you develop a Lambda function tha
 
 2\. On the blueprints screen, click **Skip** as we won't use one.
 
-
-![Setup SNS as an Event Trigger for Lambda](/Images/Sensor-Step3.png)
-
-* For the SNS topic selection, either select the SNS topic from the dropdown you created earlier (if you're working on this outside of an AWS workshop) or if you are working in an AWS workshop, insert the shared SNS topic ARN provided to you by the organizer. Make sure the trigger checkbox option is set to enabled so that your Lambda function will immediately begin processing messages. Click **Next**.
-
-* The SNS Topic ARN provided by AWS (if in a workshop) is not in your AWS account and will not display in your dropdown of choices. It is an ARN provided by AWS in a separate account and needs to be typed in.
 
 4\. On the "Configure Function" screen, name your function "[Your CloudFormation Stack Name]-sensor". Now open the **exampleSNSFunction.js** file from the workshop GitHub repository. It is located [here](/zombieSensor/lambda/exampleSNSFunction.js). Copy the entire contents of this JS file into the empty Lambda code editor.
 
