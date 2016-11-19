@@ -26,7 +26,7 @@ exports.handler = function(event, context) {
     var snsData = JSON.parse(event.Records[0].Sns.Message);
     console.log('From SNS:', snsData);
     
-    var message = snsData.message;
+    message = snsData.message;
 
     var post_data = JSON.stringify({
             "message": message, 
